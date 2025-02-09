@@ -1,0 +1,52 @@
+<div>
+  <h2>Create Product</h2>
+  <a href="products">Back</a>
+  <br />
+  <form (ngSubmit)="saveProduct()">
+    <label for="name">Name:</label>
+    <input
+      type="text"
+      id="name"
+      [(ngModel)]="product.name"
+      name="name"
+      required
+    />
+    <div *ngIf="errors['name']" class="error">{{ errors['name'] }}</div>
+    <br />
+
+    <label for="description">Description:</label>
+    <input
+      type="text"
+      id="description"
+      [(ngModel)]="product.description"
+      name="description"
+      required
+    />
+    <div *ngIf="errors['description']" class="error">{{ errors['description'] }}</div>
+    <br />
+
+    <label for="category">Category:</label>
+    <input
+      type="text"
+      id="category"
+      [(ngModel)]="product.category"
+      name="category"
+      required
+    />
+    <div *ngIf="errors['category']" class="error">{{ errors['category'] }}</div>
+    <br />
+
+    <label for="price">Price:</label>
+    <input
+      type="text"
+      id="price"
+      [(ngModel)]="product.price"
+      name="price"
+      required
+    />
+    <div *ngIf="errors['price']" class="error">{{ errors['price'] }}</div>
+    <br />
+
+    <button type="submit">Save</button>
+  </form>
+</div>

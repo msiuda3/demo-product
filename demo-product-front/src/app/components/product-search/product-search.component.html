@@ -1,0 +1,15 @@
+<div>
+    <h2>Search by Category</h2>
+    <a href="products">Back</a>
+    <br>
+    <input [(ngModel)]="category" placeholder="Enter category" />
+    <button (click)="searchByCategory()">Search</button>
+  
+    <ul>
+      <li *ngFor="let product of products">
+        {{ product.id }} - {{ product.name }} - {{ product.category }} - {{ product.price }}
+                <button (click)="deleteProduct(product.id!)">Delete</button>
+      </li>
+    </ul>
+  </div>
+  

@@ -1,0 +1,17 @@
+<div>
+    <h2>Product List</h2>
+    <button (click)="logout()">Logout</button>
+    <br>
+    <a href="/products/create">Create Product</a>
+    <br>
+    <a href="/products/search">Search by category</a>
+    <ul>
+        @for(product of products; track product.id){
+            <li>
+                {{ product.id }} - {{ product.name }} - {{ product.category }} - {{ product.price }}
+                <button (click)="deleteProduct(product.id!)">Delete</button>
+              </li>
+        }
+    </ul>
+  </div>
+  
