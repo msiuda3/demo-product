@@ -15,7 +15,7 @@ services:
       - demo_network
 
   cassandra:
-    image: cassandra:4.0  # Use the official Cassandra image
+    image: cassandra:4.0
     container_name: cassandra
     ports:
       - "9042:9042"
@@ -23,7 +23,7 @@ services:
       - CASSANDRA_BROADCAST_ADDRESS=cassandra
       - CASSANDRA_START_RPC=true
     volumes:
-      - ./cassandra-init/init.cql:/docker-entrypoint-initdb.d/init.cql  # Mount the initialization script
+      - ./cassandra-init/init.cql:/docker-entrypoint-initdb.d/init.cql
     healthcheck:
       test: ["CMD", "cqlsh", "-e", "describe keyspaces"]
       interval: 20s
@@ -36,7 +36,7 @@ services:
     depends_on:
       - cassandra
     restart: "no"
-    entrypoint: [ "/init.sh/init.sh" ] # executing the init script
+    entrypoint: [ "/init.sh/init.sh" ]
     volumes:
       - ./cassandra-init:/init.sh
     networks:
@@ -50,7 +50,7 @@ services:
 
   frontend:
     build:
-      context: ./product-demo-front
+      context: ./demo-product-front
       dockerfile: Dockerfile
     ports:
       - "4200:4200"

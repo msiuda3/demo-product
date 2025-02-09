@@ -19,7 +19,7 @@ fi
 cd ..
 
 echo -e "${GREEN}Building the Angular application...${NC}"
-cd product-demo-front
+cd demo-product-front
 npm install
 npm run build --prod
 
