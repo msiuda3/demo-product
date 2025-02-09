@@ -1,0 +1,64 @@
+version: "3.8"
+services:
+  backend:
+    build:
+      context: ./demo-product-backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      cassandra:
+        condition: service_healthy
+      init-cassandra:
+        condition: service_healthy
+    networks:
+      - demo_network
+
+  cassandra:
+    image: cassandra:4.0  # Use the official Cassandra image
+    container_name: cassandra
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_BROADCAST_ADDRESS=cassandra
+      - CASSANDRA_START_RPC=true
+    volumes:
+      - ./cassandra-init/init.cql:/docker-entrypoint-initdb.d/init.cql  # Mount the initialization script
+    healthcheck:
+      test: ["CMD", "cqlsh", "-e", "describe keyspaces"]
+      interval: 20s
+      timeout: 10s
+      retries: 10
+    networks:
+      - demo_network
+  init-cassandra:
+    image: cassandra:4.1.0
+    depends_on:
+      - cassandra
+    restart: "no"
+    entrypoint: [ "/init.sh/init.sh" ] # executing the init script
+    volumes:
+      - ./cassandra-init:/init.sh
+    networks:
+      - demo_network
+    healthcheck:
+      test: [ "CMD-SHELL", "exit $(test -f /init.sh/.done && echo 0 || echo 1)" ]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+
+
+  frontend:
+    build:
+      context: ./product-demo-front
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+    networks:
+      - demo_network
+
+networks:
+  demo_network:
+    driver: bridge
