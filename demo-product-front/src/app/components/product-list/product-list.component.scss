@@ -1,0 +1,84 @@
+$primary-color: #3f51b5;
+$danger-color: #e53935;
+$link-color: #1976d2;
+$background-color: #f4f4f4;
+$card-background: #fff;
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    margin: 0;
+  }
+
+  .logout-button {
+    background-color: $danger-color;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($danger-color, 10%);
+    }
+  }
+}
+
+.actions {
+  margin: 20px 0;
+
+  .action-link {
+    margin: 0 10px;
+    color: $link-color;
+    text-decoration: none;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.product-card {
+  width: 250px;
+  padding: 16px;
+  background: $card-background;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+
+  .product-info {
+    margin-bottom: 12px;
+  }
+
+  .delete-button {
+    background-color: $danger-color;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($danger-color, 10%);
+    }
+  }
+}

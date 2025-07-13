@@ -9,7 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   selector: 'app-product-form',
   imports: [FormsModule, CommonModule], 
   templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.css']
+  styleUrls: ['./product-form.component.scss']
 })
 export class ProductFormComponent {
   product: Product = { name: '', category: '', description: '', price: 0 };

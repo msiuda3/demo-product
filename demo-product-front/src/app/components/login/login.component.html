@@ -1,13 +1,20 @@
-<div>
-    <h2>Login</h2>
-    <form (ngSubmit)="login()">
-      <label for="username">Username:</label>
-      <input id="username" type="text" [(ngModel)]="username" name="username" required />
-      <br>
-      <label for="password">Password:</label>
-      <input id="password" type="password" [(ngModel)]="password" name="password" required />
-      <br>
-      <button type="submit">Login</button>
-    </form>
-  </div>
-  
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="login()">
+        <mat-form-field class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput id="username" type="text" [(ngModel)]="username" name="username" required />
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput id="password" type="password" [(ngModel)]="password" name="password" required />
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-product-search',
   imports: [FormsModule, CommonModule], 
   templateUrl: './product-search.component.html',
-  styleUrls: ['./product-search.component.css']
+  styleUrls: ['./product-search.component.scss']
 })
 export class ProductSearchComponent {
   category: string = '';
