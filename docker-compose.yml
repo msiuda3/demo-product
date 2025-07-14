@@ -11,6 +11,8 @@ services:
         condition: service_healthy
       init-cassandra:
         condition: service_healthy
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
     networks:
       - demo_network
 

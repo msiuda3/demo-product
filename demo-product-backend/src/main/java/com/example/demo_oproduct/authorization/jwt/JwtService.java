@@ -5,6 +5,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +19,8 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private final String SECRET_KEY = "MIHcAgEBBEIBWYpfxzhsVmX/y8sotKiNChXIx3DDG89jPIagKVznFfmLjnuJxgrq" +
-            "esEoV9+aCnoWx/dGwwBvS5OUcMe70DnQonygBwYFK4EEACOhgYkDgYYABADuLnwH" +
-            "tQaj21BGaKiqLGiIaLpwz8qxFSIwM8fvUtAZRbNjnX4YaGNyA0lg3ypeDzJ6kAGb" +
-            "f/3EXz7LDDQu3V14vAH0kxzNobAVqO+9RmM/oLYdtRlPbRDQlrZWmpfq4xk4IbWE" +
-            "i41LEi8yjVlUqd8I+ywjXYXB/NOalobkp95IflBIeQ=="; //for simplicity's sake we just hardcode the key in the class although this is a bad practice
+    @Value("${jwt.secret}")
+    private String SECRET_KEY;
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -74,4 +73,12 @@ public class JwtService {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
+
+    //for debugging purposes
+    @PostConstruct
+    public void init() {
+        System.out.println("Loaded JWT secret: " + SECRET_KEY);
+    }
+
 }
