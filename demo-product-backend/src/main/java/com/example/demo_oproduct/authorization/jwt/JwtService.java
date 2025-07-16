@@ -75,10 +75,4 @@ public class JwtService {
     }
 
 
-    //for debugging purposes
-    @PostConstruct
-    public void init() {
-        System.out.println("Loaded JWT secret: " + SECRET_KEY);
-    }
-
 }

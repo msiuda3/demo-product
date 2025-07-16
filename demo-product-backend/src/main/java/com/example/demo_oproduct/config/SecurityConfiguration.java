@@ -30,9 +30,6 @@ public class SecurityConfiguration {
                 .requestMatchers("api/auth/**")
                 .permitAll()
 
-                .anyRequest()
-                .permitAll()
-
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
